@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 250px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1a73e8;
+      margin-bottom: 5px;
+    }
+    .switch {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .switch-label {
+      flex-grow: 1;
+      font-size: 14px;
+      color: #202124;
+    }
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 22px;
+      cursor: pointer;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .3s;
+      border-radius: 22px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #1a73e8;
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+    .switch[data-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .switch[data-disabled="true"] .toggle {
+      cursor: not-allowed;
+    }
+    .switch[data-disabled="true"] .slider {
+      background-color: #ddd;
+    }
+    .input-group {
+      margin-top: 10px;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #202124;
+    }
+    .input-group input {
+      width: 210px;
+      padding: 6px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+    .info {
+      margin-top: 8px;
+      padding: 8px;
+      background: #fff3e0;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #b36800;
+      line-height: 1.4;
+    }
+    .instructions {
+      font-size: 12px;
+      color: #5f6368;
+      line-height: 1.4;
+      margin-top: 8px;
+      padding: 8px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .options-group {
+      display: none;
+      margin-top: 10px;
+      gap: 12px;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">DOM Editor</div>
+    
+    <div class="switch" id="persistSwitch">
+      <div class="switch-label">Persist Changes</div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch" id="outlineContainer">
+      <div class="switch-label">Show Element Outlines</div>
+      <label class="toggle">
+        <input type="checkbox" id="outlineSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch" id="valueIncreaseContainer">
+      <div class="switch-label">Value Increase Mode</div>
+      <label class="toggle">
+        <input type="checkbox" id="valueIncreaseSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div id="valueIncreaseOptions" class="options-group">
+      <div class="input-group">
+        <label for="incrementValue">Increment by:</label>
+        <input type="number" id="incrementValue" value="1000" min="1">
+      </div>
+      
+      <div class="switch" id="randomizerContainer">
+        <div class="switch-label">Increment Randomizer</div>
+        <label class="toggle">
+          <input type="checkbox" id="randomizerSwitch">
+          <span class="slider"></span>
+        </label>
+      </div>
+      
+      <div class="info">
+        Numbers will be highlighted in yellow.<br>
+        Randomizer varies increment by ±50%.<br>
+        Click to edit or set auto-increment value.
+      </div>
+    </div>
+
+    <div class="instructions">
+      Click text elements to edit when outlines are enabled.
+      Changes will persist on page refresh when enabled.
+      Use Value Increase Mode to auto-increment numbers.
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
