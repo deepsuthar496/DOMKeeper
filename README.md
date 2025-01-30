@@ -1,6 +1,10 @@
 # DOMKeeper 🚀
 
 A powerful browser extension that makes permanent changes to web pages - your modifications stay intact even after refreshes!
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/5bc72c58-ebf4-480f-838a-79d5a13156db" alt="DOMKeeper Preview" width="300"/>
+</div>
+
 
 ## Features ✨
 
